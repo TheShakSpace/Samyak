@@ -1,0 +1,229 @@
+[
+  {
+    "task_id": "TEST001",
+    "title": "Test Task",
+    "description": "This is a test task",
+    "priority": "medium",
+    "deadline": "2026-01-13T18:39:17.802263",
+    "status": "in_progress",
+    "assignee": "me",
+    "tags": [
+      "test"
+    ],
+    "created_at": "2026-01-12T18:39:17.802271",
+    "updated_at": "2026-01-12T18:39:17.802458",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK001",
+    "title": "Finish project report",
+    "description": "Complete the quarterly project report with all metrics",
+    "priority": "high",
+    "deadline": "2026-01-14T18:39:17.802575",
+    "status": "in_progress",
+    "assignee": "me",
+    "tags": [
+      "work",
+      "urgent"
+    ],
+    "created_at": "2026-01-12T18:39:17.802578",
+    "updated_at": "2026-01-12T18:39:17.802579",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK002",
+    "title": "Review code changes",
+    "description": "Review pull requests from the team",
+    "priority": "medium",
+    "deadline": "2026-01-17T18:39:17.802579",
+    "status": "todo",
+    "assignee": "me",
+    "tags": [
+      "work",
+      "code"
+    ],
+    "created_at": "2026-01-12T18:39:17.802581",
+    "updated_at": "2026-01-12T18:39:17.802581",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK003",
+    "title": "Team meeting preparation",
+    "description": "Prepare agenda and materials for weekly team meeting",
+    "priority": "high",
+    "deadline": "2026-01-13T18:39:17.802581",
+    "status": "todo",
+    "assignee": "me",
+    "tags": [
+      "work",
+      "meeting"
+    ],
+    "created_at": "2026-01-12T18:39:17.802583",
+    "updated_at": "2026-01-12T18:39:17.802583",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASKFA0631",
+    "title": "Finish project report",
+    "description": "Complete the quarterly project report with all metrics",
+    "priority": "high",
+    "deadline": "2026-01-14T18:48:01.887021",
+    "status": "in_progress",
+    "assignee": "me",
+    "tags": [
+      "work",
+      "urgent"
+    ],
+    "created_at": "2026-01-12T18:48:01.887029",
+    "updated_at": "2026-01-12T18:48:01.887306",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASKA91EC1",
+    "title": "Weekly team sync",
+    "description": "Prepare for weekly team synchronization meeting",
+    "priority": "medium",
+    "deadline": "2026-01-19T18:48:01.887761",
+    "status": "todo",
+    "assignee": "me",
+    "tags": [
+      "meeting",
+      "weekly"
+    ],
+    "created_at": "2026-01-12T18:48:01.887766",
+    "updated_at": "2026-01-12T18:48:01.887766",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASKCAF4AE",
+    "title": "Quarterly review",
+    "description": "Prepare quarterly review presentation",
+    "priority": "high",
+    "deadline": "2026-01-19T00:00:00",
+    "status": "todo",
+    "assignee": "me",
+    "tags": [
+      "review",
+      "quarterly"
+    ],
+    "created_at": "2026-01-12T18:48:01.888041",
+    "updated_at": "2026-01-12T18:48:01.888041",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK46D3F3",
+    "title": "Test task from agent",
+    "description": "Testing direct tool usage",
+    "priority": "medium",
+    "deadline": null,
+    "status": "todo",
+    "assignee": "me",
+    "tags": [],
+    "created_at": "2026-01-12T19:27:32.710671",
+    "updated_at": "2026-01-12T19:27:32.710672",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK0ED423",
+    "title": "CLI Test Task",
+    "description": "",
+    "priority": "medium",
+    "deadline": null,
+    "status": "todo",
+    "assignee": "me",
+    "tags": [],
+    "created_at": "2026-01-12T19:47:53.942759",
+    "updated_at": "2026-01-12T19:47:53.942760",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK46F67B",
+    "title": "Test Task from CLI",
+    "description": "1 day",
+    "priority": "high",
+    "deadline": null,
+    "status": "in_progress",
+    "assignee": "me",
+    "tags": [
+      "test",
+      "demo"
+    ],
+    "created_at": "2026-01-12T20:05:05.194130",
+    "updated_at": "2026-01-12T20:06:07.362109",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK0F3FD0",
+    "title": "Test task from agent",
+    "description": "Testing direct tool usage",
+    "priority": "medium",
+    "deadline": null,
+    "status": "todo",
+    "assignee": "me",
+    "tags": [],
+    "created_at": "2026-01-12T20:05:48.275292",
+    "updated_at": "2026-01-12T20:05:48.275293",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK2C236A",
+    "title": "Test task",
+    "description": "",
+    "priority": "high",
+    "deadline": null,
+    "status": "todo",
+    "assignee": "me",
+    "tags": [],
+    "created_at": "2026-01-13T00:29:52.872959",
+    "updated_at": "2026-01-13T00:29:52.872959",
+    "completed_at": null
+  },
+  {
+    "task_id": "TASK52A18C",
+    "title": "E2E Test: Review PR",
+    "description": "Review backend PR by Friday",
+    "priority": "high",
+    "deadline": null,
+    "status": "completed",
+    "assignee": "shakshi@example.com",
+    "tags": [
+      "e2e",
+      "test"
+    ],
+    "created_at": "2026-01-30T15:36:46.856327",
+    "updated_at": "2026-01-30T15:36:48.008508",
+    "completed_at": "2026-01-30T15:36:48.008242"
+  },
+  {
+    "task_id": "TASKB39B2D",
+    "title": "E2E Test: Review PR",
+    "description": "Review backend PR by Friday",
+    "priority": "high",
+    "deadline": null,
+    "status": "completed",
+    "assignee": "shakshi@example.com",
+    "tags": [
+      "e2e",
+      "test"
+    ],
+    "created_at": "2026-01-30T15:37:31.420033",
+    "updated_at": "2026-01-30T15:37:31.613937",
+    "completed_at": "2026-01-30T15:37:31.613666"
+  },
+  {
+    "task_id": "TASKEBDF88",
+    "title": "E2E Test: Review PR",
+    "description": "Review backend PR by Friday",
+    "priority": "high",
+    "deadline": null,
+    "status": "completed",
+    "assignee": "shakshi@example.com",
+    "tags": [
+      "e2e",
+      "test"
+    ],
+    "created_at": "2026-01-30T15:37:55.576048",
+    "updated_at": "2026-01-30T15:38:25.871946",
+    "completed_at": "2026-01-30T15:38:25.871693"
+  }
+]
