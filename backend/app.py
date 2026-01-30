@@ -12,7 +12,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 # Import after env is loaded
-from config import BACKEND_BASE_URL
+from config import (
+    BACKEND_BASE_URL,
+    WEBHOOK_URL_SLACK_TASKS,
+    WEBHOOK_URL_SLACK_AGENT,
+    WEBHOOK_URL_SLACK,
+    GOOGLE_OAUTH_CLIENT_ID,
+)
 from db.factory import get_task_manager_factory
 from db.firebase import get_hours_repository
 from models.task import Task
@@ -221,6 +227,20 @@ def agent_process(body: AgentRequest):
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "agentic-task-api"}
+
+
+@app.get("/api/integrations/status")
+def integrations_status():
+    """Return which integrations are configured (no secrets). Frontend uses this for Slack/Calendar status."""
+    slack_tasks = bool(WEBHOOK_URL_SLACK_TASKS or WEBHOOK_URL_SLACK)
+    slack_agent = bool(WEBHOOK_URL_SLACK_AGENT)
+    google_oauth = bool(GOOGLE_OAUTH_CLIENT_ID)
+    return {
+        "slack_tasks": slack_tasks,
+        "slack_agent": slack_agent,
+        "google_oauth": google_oauth,
+        "calendar_sync": False,  # Not implemented yet
+    }
 
 
 if __name__ == "__main__":

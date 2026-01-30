@@ -1,6 +1,6 @@
 /**
  * AI service – talks to backend agent (Gemini) for chat, documents, strategy.
- * Uses NEXT_PUBLIC_API_URL and /api/agent/process.
+ * Fallback: if backend is down, calls Gemini API directly from frontend (NEXT_PUBLIC_GEMINI_API_KEY).
  */
 import { processAgentRequest } from "./tasks-api"
 
@@ -24,14 +24,53 @@ function getLastUserMessage(messages: ChatMessageInput[]): string {
   return ""
 }
 
-/** Call backend agent; show clear error if backend unavailable */
+const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta"
+
+/** Fallback: call Gemini API directly from frontend when backend is unavailable */
+async function fallbackGemini(request: string): Promise<string> {
+  const apiKey = (typeof window !== "undefined" ? process.env.NEXT_PUBLIC_GEMINI_API_KEY : process.env.NEXT_PUBLIC_GEMINI_API_KEY) ?? ""
+  if (!apiKey.trim()) {
+    return "Backend is unavailable and no frontend Gemini fallback key is set. Add NEXT_PUBLIC_GEMINI_API_KEY to .env.local for fallback, or start the backend (cd backend && python -m uvicorn app:app --port 8000)."
+  }
+  try {
+    const model = process.env.NEXT_PUBLIC_GEMINI_MODEL || "gemini-2.0-flash"
+    const res = await fetch(
+      `${GEMINI_API_BASE}/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: request }] }],
+          generationConfig: { maxOutputTokens: 2048, temperature: 0.7 },
+        }),
+      }
+    )
+    if (!res.ok) {
+      const err = await res.text()
+      return `Gemini fallback error (${res.status}): ${err.slice(0, 200)}. Check NEXT_PUBLIC_GEMINI_API_KEY.`
+    }
+    const data = await res.json()
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
+    return typeof text === "string" ? text : "No response from Gemini."
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e)
+    return `Gemini fallback failed: ${msg}. Check network and NEXT_PUBLIC_GEMINI_API_KEY.`
+  }
+}
+
+/** Call backend agent; on failure or empty response try Gemini fallback if key is set */
 async function callAgent(request: string): Promise<string> {
   try {
     const { response } = await processAgentRequest(request)
-    return response || ""
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : "Backend unavailable"
-    return `Could not reach the agent. ${msg}\n\nStart the backend: cd backend && python -m uvicorn app:app --port 8000\nThen set GEMINI_API_KEY in backend/.env for live AI.`
+    if (response?.trim()) return response
+    // Empty response – try frontend Gemini fallback
+    const fallback = await fallbackGemini(request)
+    if (fallback && !fallback.includes("no frontend Gemini fallback key")) return fallback
+    return "No response from backend. Add NEXT_PUBLIC_GEMINI_API_KEY to .env.local for fallback."
+  } catch {
+    const fallback = await fallbackGemini(request)
+    if (fallback && !fallback.includes("no frontend Gemini fallback key")) return fallback
+    return "Backend unavailable. Start: cd backend && python -m uvicorn app:app --port 8000. Set GEMINI_API_KEY in backend/.env, or add NEXT_PUBLIC_GEMINI_API_KEY to .env.local for frontend fallback."
   }
 }
 

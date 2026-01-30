@@ -35,6 +35,8 @@ Copy from `env.local.example` (at repo root) to `.env.local`. Used by the Next.j
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `NEXT_PUBLIC_API_URL` | Yes | Backend API base URL (e.g. `http://localhost:8000`). |
+| `NEXT_PUBLIC_GEMINI_API_KEY` | No | Gemini API key for **frontend fallback**: when the backend is down or returns empty, the Voice Agent calls Gemini from the browser. Get key from [Google AI Studio](https://aistudio.google.com/). Restrict key for production. |
+| `NEXT_PUBLIC_GEMINI_MODEL` | No | Model for frontend fallback (e.g. `gemini-2.0-flash`, `gemini-1.5-flash`). Default: `gemini-2.0-flash`. |
 
 Firebase is **not** configured in the frontend for Firestore; all DB access is via the backend. If you use Firebase Auth in the frontend, configure that separately (e.g. in your auth provider or Firebase console).
 

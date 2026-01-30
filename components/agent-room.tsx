@@ -614,6 +614,23 @@ export default function AgentRoom() {
 
   return (
     <div className="h-full p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 overflow-auto">
+      {/* SAMYAK logo header */}
+      <header className="flex justify-center py-4">
+        <div className="bg-black rounded-xl px-8 py-6 flex items-center justify-center min-h-[100px]">
+          <img
+            src="/samyak-logo.png"
+            alt="SAMYAK"
+            className="h-14 w-auto object-contain max-w-[280px]"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.style.display = "none"
+              const fallback = target.nextElementSibling as HTMLElement
+              if (fallback) fallback.classList.remove("hidden")
+            }}
+          />
+          <span className="hidden text-white text-2xl font-serif tracking-widest">SAMYAK</span>
+        </div>
+      </header>
       {/* Mode Selector and Tools */}
         <Card className="glass p-4 border-primary/20 group">
         <div className="flex items-center justify-between flex-wrap gap-4">

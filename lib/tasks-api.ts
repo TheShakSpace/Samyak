@@ -196,3 +196,23 @@ export async function processAgentRequest(request: string): Promise<{
   if (!res.ok) throw new Error(data.detail || "Agent request failed")
   return data
 }
+
+// --- Integrations (Slack, Gmail/Calendar) ---
+export interface IntegrationsStatus {
+  slack_tasks: boolean
+  slack_agent: boolean
+  google_oauth: boolean
+  calendar_sync: boolean
+}
+
+export async function getIntegrationsStatus(): Promise<IntegrationsStatus> {
+  const res = await fetch(`${API_BASE}/api/integrations/status`, { headers: authHeaders() })
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) return { slack_tasks: false, slack_agent: false, google_oauth: false, calendar_sync: false }
+  return {
+    slack_tasks: !!data.slack_tasks,
+    slack_agent: !!data.slack_agent,
+    google_oauth: !!data.google_oauth,
+    calendar_sync: !!data.calendar_sync,
+  }
+}
