@@ -13,7 +13,7 @@ CHART_OUTPUT_DIR = "data/charts"
 # --- LLM: Gemini (default) ---
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+GEMINI_MODEL = (os.getenv("GEMINI_MODEL", "gemini-2.0-flash") or "").strip() or "gemini-2.0-flash"
 
 # Legacy (fallback only)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", None)

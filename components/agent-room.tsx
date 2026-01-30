@@ -42,7 +42,6 @@ export default function AgentRoom() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const chatScrollRef = useRef<HTMLDivElement>(null)
   const recognitionRef = useRef<any>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [isMediaVisible, setIsMediaVisible] = useState<"gif" | "video">("gif")
   const synthRef = useRef<SpeechSynthesis | null>(null)
@@ -277,11 +276,7 @@ export default function AgentRoom() {
       utterance.onend = () => {
         setIsMediaVisible("gif")
         setState(mode === "autonomous" ? "processing" : "idle")
-        if (videoRef.current) {
-          videoRef.current.pause()
-          videoRef.current.currentTime = 0
-        }
-        }
+      }
 
       utterance.onerror = () => {
         setState("idle")
@@ -926,22 +921,18 @@ export default function AgentRoom() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   src="/images/11df2bc889722dab6946142dc9c70151.gif"
-                  alt="Vittya Agent"
+                  alt="Assistant"
                     className="w-full h-full object-contain"
                 />
               ) : (
-                  <motion.video
-                    key="video"
+                  <motion.img
+                    key="assistant"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                  ref={videoRef}
-                  src="/speaking_agent.mp4"
+                  src="/assistant.jpeg"
+                  alt="Assistant"
                     className="w-full h-full object-contain"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
                 />
               )}
               </AnimatePresence>
