@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Clock, Plus, RefreshCw, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { getTasks, logWorkingHours, getWorkingHours, type Task, type WorkingHoursEntry } from "@/lib/tasks-api"
 import { useAuth } from "@/context/auth-context"
 
-export default function LogHoursPage() {
+function LogHoursContent() {
   const searchParams = useSearchParams()
   const preselectedTask = searchParams.get("task") ?? ""
   const [tasks, setTasks] = useState<Task[]>([])
@@ -164,5 +164,19 @@ export default function LogHoursPage() {
         </Card>
       </div>
     </div>
+  )
+}
+
+export default function LogHoursPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="h-full flex items-center justify-center p-8">
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+        </div>
+      }
+    >
+      <LogHoursContent />
+    </Suspense>
   )
 }
